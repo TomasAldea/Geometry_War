@@ -23,11 +23,11 @@ geometryFigures.js
 
 ## 3. Constructor de juegos
 
-Propiedades:
+### Propiedades:
   - figure
   - lives
 
-Métodos:
+### Métodos:
   - startLoop
   - checkClick
   - removeFigure
@@ -36,23 +36,23 @@ Métodos:
 
 ## 4. Jugador constructor
 
-Propiedades:
+### Propiedades:
   - player
   
 
-Métodos:
+### Métodos:
   - click
   - removeFigure
 
 
 ## 5. Constructor de figuras
 
-Propiedades:
+### Propiedades:
   - figuraCuadrada
   - figuraTriangulo
   - figura circulo
 
-Métodos:
+### Métodos:
   -  cadenciaCuadrados
   -  cadenciaTriangulos
   -  cadenciaCirculos
@@ -82,8 +82,11 @@ Métodos:
 
 ## Trello
 
-!(https://trello.com/b/B5niMFza/geometrywar)
+[Link trello](https://trello.com/b/B5niMFza/geometrywar)
+
+
+
 
 ## Git 
 
-https://github.com/TomasAldea/Geometry_War
+[Link HitHub](https://github.com/TomasAldea/Geometry_War)
