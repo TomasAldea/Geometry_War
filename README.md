@@ -11,7 +11,7 @@ El jugador perderá la partida si se acumulan mas de X figuras en el tablero a l
 index.html
 game.js
 player.js
-geometryFigures.js
+Figures.js
 
 ## 1. archivo index.html
 
