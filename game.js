@@ -13,7 +13,7 @@ class Game {
     this.gameOverCallback = gameOverCallback;
     this.gameWinCallback = gameWinCallback;
     this.levels = 0;
-    this.winPoints = 1600 // puntos para ganar
+    this.winPoints = 1900 // puntos para ganar
     //limites de errores
     this.limitFigures = 20;
     this.limitFailClicks = 20;
@@ -57,8 +57,7 @@ class Game {
 
       clearInterval(this.intervalId);
       this.difficulty = this.difficulty - 500;   
-      var audioLastLevel = new Audio('audios/lastLevelSound.mp3');
-      audioLastLevel.play() 
+     
       this.initFigure = true;
       this.levels+=1
 
@@ -73,6 +72,11 @@ class Game {
     this.difficulty = this.difficulty - 500;    
     this.initFigure = true;
     this.levels+=1
+    // audio
+    var audioLastLevel = new Audio('audios/lastLevelSound.mp3');
+    audioLastLevel.volume = 0.1
+    audioLastLevel.play() 
+  
   }
 }
 
@@ -82,10 +86,9 @@ class Game {
 
   // dibujamos cuadrados
   drawCanvas() {
+    
     this.figures.forEach((enemy) => {
-      enemy.drawSquare();
-      // enemy.drawCircle();
-      enemy.drawImg()
+     enemy.drawImg()
     });
   }
 
@@ -94,8 +97,9 @@ class Game {
     var pairClick = 0;
     this.figures.forEach((enemy, index) => {
       if (enemy.checkPairClick(userX, userY)) {
-        var audio = new Audio("audios/pairClick.mp3");
-        audio.play();
+        var audioPairClick = new Audio("audios/pairClick.mp3");
+        audioPairClick.volume = 0.2
+        audioPairClick.play();
         this.points = this.points + 50;
         this.checkWinCondition();
       
@@ -106,8 +110,9 @@ class Game {
     });
 
     if (!pairClick) {
-      var audio = new Audio('../audios/failClick.mp3');
-      audio.play()
+      var audioFailClick = new Audio('../audios/failClick.mp3');
+      audioFailClick.volume = 0.2
+      audioFailClick.play()
       this.failClick++;
     }
     this.checkFailclicks();
@@ -127,6 +132,7 @@ class Game {
   gameOver() {
     var audioLose = new Audio('audios/game over.mp3');
     audioLose.play()
+    audioLose.volume = 0.2
     this.gameOverCallback();
     clearInterval(this.intervalId);
   }
@@ -149,6 +155,7 @@ class Game {
   checkWinCondition() {
     if (this.points == this.winPoints) {
       var audioWin = new Audio("audios/winScreen.mp3");
+      audioWin.volume = 0.2
       audioWin.play();
       console.log(" win win win win")
       this.gameWin();

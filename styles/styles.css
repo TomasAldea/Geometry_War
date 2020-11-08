@@ -33,12 +33,21 @@ html {
     text-align: center;
   }
   
-  h2 {}
+  h2 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 20px;
+    text-align: center;
+    font-family: 'Goldman', cursive;
+  }
   
   h3 {}
   
   p {
     margin: 0;
+  }
+
+  th {
+    text-decoration: underline;
   }
   
   
@@ -109,8 +118,13 @@ html {
  
   }
   .container .game-screen table{
-    background: white;
+    background: blueviolet;
     text-align: center;
+    width: 20%;
+    font-family: 'Orbitron';
+    font-size: 20px;
+    backdrop-filter: blur(10px);
+    background-color: rgb(9 41 232 / 20%);
   }
   .container {
     background-image: url('../screens/first screen.jpg');
@@ -152,6 +166,13 @@ html {
     cursor: pointer;
   }
 
+
+  .game-table {
+    background-color: #ffdf00;
+    border-radius: 20px;
+    border-spacing: 5px;
+  }
+
   button:hover{
     background: #ffdf00;
   }
@@ -172,3 +193,4 @@ html {
       opacity:1;
     }
   }
+
