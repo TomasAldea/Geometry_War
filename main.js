@@ -1,6 +1,5 @@
 "use-strict";
 
-
 const main = () => {
   const buildDom = (html) => {
     const main = document.querySelector("main");
@@ -11,7 +10,7 @@ const main = () => {
   const buildSplashScreen = () => {
     buildDom(`
         <section class="splash-screen">
-            <h1 class="first-screen">Geometry war</h1>
+            <h1>Geometry War</h1>
             <button>Start</button>
         </section>
         `);
@@ -19,56 +18,98 @@ const main = () => {
     startButton.addEventListener("click", buildGameScreen);
   };
 
+// pantalla para win
+
+const buildGameWin = () => {
+  buildDom(`
+          <section class="game-win">
+              <h1>¡You win!</h1>
+              <button>Restart</button>
+          </section>
+      `);
+
+  const restartButton = document.querySelector("button");
+  restartButton.addEventListener("click", buildGameScreen);
+};
+
+
+  // pantalla para lose
+  const buildGameOver = () => {
+    buildDom(`
+            <section class="game-over fade-in">
+                <h1>Game Over Screen</h1>
+                <button>Restart</button>
+            </section>
+        `);
+
+    const restartButton = document.querySelector("button");
+    restartButton.addEventListener("click", buildGameScreen);
+  };
+
+// primera pantalla
+
   const buildGameScreen = () => {
+    const main = document.querySelector("main");
+    main.classList.add("fade-in")
     buildDom(`
             <section class="game-screen">
-            <canvas width =800 height=800> </canvas>
+              <table>
+                <tr>
+                  <th>Fail clicks</th><th>Sobrecarga</th><th>Points</th>
+                </tr>
+                <tr>
+                  <td id="limitFailClicks"></td><td id="limitFigures"></td><th id="guessedClicks">0</th>
+                </tr>
+              <canvas width =800 height=800> </canvas>
             </section>
             
         `);
-    
-        const image = document.createElement('img')
-        image.src  = 'screens/gameScreen.jpg'
-        document.querySelector('.container').appendChild(image)
- 
-    const canvas = document.querySelector("canvas")
-    const ctx = canvas.getContext("2d")
+     
+        var audio = new Audio('audios/gameStart.mp3');
+        audio.play()
+        
 
-    
-    const game = new Game(canvas);
-    /*
-    function playerClick(event) {
-      game.playerClick(event.clientX, event.clientY)
-  
+
+
+    const canvas = document.querySelector("canvas");
+    const ctx = canvas.getContext("2d");
+
+    const game = new Game(canvas, buildGameOver, buildGameWin);
+
+    function getMousePosition(canvas, event) {
+      let rect = canvas.getBoundingClientRect();
+      let x = event.clientX - rect.left;
+      let y = event.clientY - rect.top;
+
+      game.playerClick(x, y);
     }
-    canvas.addEventListener("click", playerClick)
-    */
 
 
-   function getMousePosition(canvas, event) { 
-    let rect = canvas.getBoundingClientRect(); 
-    let x = event.clientX - rect.left; 
-    let y = event.clientY - rect.top; 
+
+    canvas.addEventListener("mousedown", function (e) {
+     
+      getMousePosition(canvas, e);
+    });
+
+    setTimeout(function(){ game.startLoop(); }, 3500);
+    //game.startLoop();
+
+
     
-    game.playerClick(x, y)
    
-} 
+    
 
 
-  
-canvas.addEventListener("mousedown", function(e) 
-{ 
-  //console.log("mousedown")
-    getMousePosition(canvas, e); 
-
-
-}); 
-
-    game.startLoop();
-  
   };
 
   buildSplashScreen();
+
+
+
+
+
+
+
 };
 
 window.addEventListener("load", main);

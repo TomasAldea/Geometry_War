@@ -8,6 +8,9 @@ html {
     box-sizing: inherit;
   }
   
+  *{
+    transition: all .8s ease;
+  }
   body {
     margin: 0;
     padding: 0;
@@ -23,7 +26,12 @@ html {
     line-height: 147%;
   }
   
-  h1 {}
+  h1 {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 80px;
+
+    text-align: center;
+  }
   
   h2 {}
   
@@ -87,32 +95,80 @@ html {
   
   /* ---- section ---- */
   
-  .game-screen {
-      width: 100%;
-      height: 100vh;
-  }
+
 
   .container .game-screen{
     background-image: url('../screens/gameScreen.jpg');
-    text-align: center;
-    height: 100vh;
     background-size: cover;
-
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
+ 
+  }
+  .container .game-screen table{
+    background: white;
+    text-align: center;
   }
   .container {
-    background-image: url('../screens/first screen game.webp');
-    text-align: center;
+    background-image: url('../screens/first screen.jpg');
     height: 100vh;
     background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column-reverse;
 
   }
 
-  canvas{
+  .container .splash-screen{
+    
+    width: 800px;
+    text-align: center;
+    width: 800px;
+    text-align: center;
+    min-height: 500px;
+  }
+
+  canvas {
     backdrop-filter: blur(40px);
     background-color: rgba(255,255,255,.2);
   }
 
-  .first-screen {
-    color: red;
+  .first-text {
+    
+    
+  }
+  button{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 50px;
+    background: white;
+    padding: 15px 35px;
+    border-radius: 20px;
+    border: 4px solid #c3c3c3;
+    box-shadow: 5px 5px 20px 0px #00000059;
+    cursor: pointer;
+  }
 
+  button:hover{
+    background: #ffdf00;
+  }
+
+  .splash-screen {
+    backdrop-filter: blur(10px);
+    background-color: rgba(255,255,255,.2);
+  }
+
+  .fade-in {
+    animation: fadeIn ease 3s;
+  }
+  @keyframes fadeIn {
+    0% {
+      opacity:0;
+    }
+    100% {
+      opacity:1;
+    }
   }
