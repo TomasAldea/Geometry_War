@@ -19,7 +19,7 @@ class Game {
     this.backGoundMusic.play();
     //limites de errores
     this.limitFigures = 15;
-    this.limitFailClicks = 10;
+    this.limitFailClicks = 15;
   }
 
   // loop para generar cuadrados en el canvas
@@ -162,9 +162,11 @@ class Game {
     });
 
     if (!pairClick) {
-      var audioFailClick = new Audio("../audios/failClick.mp3");
+      var audioFailClick = new Audio("audios/failClick.mp3");
       audioFailClick.volume = 0.2;
       audioFailClick.play();
+      
+      
       this.failClick++;
     }
     this.checkFailclicks();
