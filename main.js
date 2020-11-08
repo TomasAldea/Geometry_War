@@ -78,13 +78,14 @@ const buildGameWin = () => {
 
   // pantalla para lose
   const buildGameOver = () => {
+  
     buildDom(`
             <section class="game-over fade-in">
                 <h1>Game Over Screen</h1>
                 <button>Restart</button>
             </section>
         `);
-
+     
     // confetti.start();
     const restartButton = document.querySelector("button");
 
@@ -113,9 +114,7 @@ const buildGameWin = () => {
             
         `);
 
-        var audioFirstScreen = new Audio('audios/street-fighter-intro.mp3');
-        audioFirstScreen.volume = 0.2
-        audioFirstScreen.play() 
+     
 
     const canvas = document.querySelector("canvas");
     const ctx = canvas.getContext("2d");
@@ -137,7 +136,7 @@ const buildGameWin = () => {
       getMousePosition(canvas, e);
     });
 
-    setTimeout(function(){ game.startLoop(); }, 3500);
+    setTimeout(function(){ game.startLoop(); }, 3000);
 
 
 
