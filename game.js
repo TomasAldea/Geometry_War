@@ -13,7 +13,7 @@ class Game {
     this.gameOverCallback = gameOverCallback;
     this.gameWinCallback = gameWinCallback;
     this.levels = 0;
-    this.winPoints = 50 // puntos para ganar
+    this.winPoints = 1600 // puntos para ganar
     //limites de errores
     this.limitFigures = 20;
     this.limitFailClicks = 20;
