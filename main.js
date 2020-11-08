@@ -15,10 +15,21 @@ const main = () => {
             <h1 class="animate__animated animate__zoomInDown animate__delay-1s">Geometry War</h1>
             <button class="animate__animated animate__zoomInUp animate__delay-1s">Start</button>
             <h2 class="animate__animated animate__zoomInUp animate__delay-1s"> 
-            <u>Objective</u> <br> Make the squares disappear with your mouse.<br>
-            <u>Win condition</u> <br>  Make 2500 points clearing squares.<br>
-            <u>Lose condition</u> <br> missclick 20 times or accumulate 15 squares
+            <u>Objective</u> <br> Make the figures disappear with your mouse.<br>
+            <u>Win condition</u> <br>  Make 2500 points clearing figures.<br>
+            <u>Lose condition</u> <br> Missclick 15 times or accumulate 15 squares
             </h2>
+            <div class="animate__animated animate__zoomInRight animate__delay-1s">
+            <img src="screens/circleBlue.png"  width="50" height="50"> 
+            <img src="screens/square.png"  width="50" height="50"> 
+            <h2>+ 50 points</h2>
+            </div>
+            <div class="animate__animated animate__zoomInLeft animate__delay-1s">
+            <img src="screens/circleFail.png"  width="50" height="50"> 
+            <img src="screens/failSquare (2).png"  width="50" height="50"> 
+            <h2>- 50 points and shake hard!</h2>
+            </div>
+            
     
         </section>
         `);
@@ -92,7 +103,7 @@ const buildGameWin = () => {
             <section class="game-screen">
               <table class="game-table">
                 <tr>
-                  <th>MissClicks</th><th>Enemy Squares</th><th>Total Points</th>
+                  <th>MissClicks</th><th>Enemy figures</th><th>Total Points</th>
                 </tr>
                 <tr>
                   <td id="limitFailClicks"></td><td id="limitFigures"></td><th id="guessedClicks">0</th>

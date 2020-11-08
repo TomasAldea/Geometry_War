@@ -7,14 +7,34 @@ class Enemy {
       this.x = this.randomNumber(10, 600) // random position             
       this.y = this.randomNumber(10, 600) // random position 
       this.size = this.randomNumber(25, 80) // random size 
-      this.icons = ['screens/square.png', "screens/naranja.png"]
+      this.icons = ['screens/square.png', "screens/circleBlue.png"]
+      this.iconsFail = ['screens/failSquare (2).png', "screens/circleFail.png"]
+      this.imageSelected = null;
+      this.enemyFigure = false;
+      this.deleteItem=false;
+      setTimeout(() => {
+        if(this.enemyFigure){
+          this.deleteItem=true; 
+        }
+      }, 2000);
     }
 
 
     drawImg() {
-      //let randomImg = this.icons[Math.floor(Math.random() * this.icons.length)];
+
+      if(!this.imageSelected && Math.random() > 0.70){
+        this.enemyFigure = true
+      }
+
+      if(!this.imageSelected && !this.enemyFigure){
+        this.imageSelected = this.icons[Math.floor(Math.random() * this.icons.length)];
+      }else if (!this.imageSelected && this.enemyFigure){
+        this.imageSelected = this.iconsFail[Math.floor(Math.random() * this.iconsFail.length)];
+      }
+     
+
       var img = new Image(); // HTML5 Constructor
-      img.src = 'screens/square.png'
+      img.src = this.imageSelected
       this.ctx.drawImage(img, this.x, this.y, this.size, this.size);
     }
 

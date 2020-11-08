@@ -6,17 +6,17 @@ class Game {
     this.ctx = this.canvas.getContext("2d");
     this.figures = [];
     this.intervalId = null;
-    this.difficulty = 2500; // tiempo en que genera figuras
+    this.difficulty = 1500; // tiempo en que genera figuras
     this.initFigure = true;
     this.failClick = 0;
     this.points = 0;
     this.gameOverCallback = gameOverCallback;
     this.gameWinCallback = gameWinCallback;
     this.levels = 0;
-    this.winPoints = 1900 // puntos para ganar
+    this.winPoints = 2500 // puntos para ganar
     //limites de errores
-    this.limitFigures = 20;
-    this.limitFailClicks = 20;
+    this.limitFigures = 15;
+    this.limitFailClicks = 10;
   }
 
   // loop para generar cuadrados en el canvas
@@ -41,30 +41,62 @@ class Game {
 
   // resetar el set interval y modifical el tiempo
   restartInterval() {
+      // shakes dispersos
+      
+    if (this.points == 200) {
+      this.sounds++
+      var shakeCanvas = document.querySelector("canvas");
+      shakeCanvas.classList.add("shake")
+
+      setTimeout(() => {
+        shakeCanvas.classList.remove("shake")
+      }, 1500);
+    }
+    if (this.points == 400) {
+      var shakeCanvas = document.querySelector("canvas");
+      shakeCanvas.classList.add("shake-chunk")
+
+      setTimeout(() => {
+        shakeCanvas.classList.remove("shake-chunk")
+      }, 1500);
+    }
+    if (this.points == 600) {
+      var shakeCanvas = document.querySelector("canvas");
+      shakeCanvas.classList.add("shake-chunk")
+
+      setTimeout(() => {
+        shakeCanvas.classList.remove("shake-chunk")
+      }, 1500);
+    }
+    if (this.points == 700) {
+      var shakeCanvas = document.querySelector("canvas");
+      shakeCanvas.classList.add("shake-chunk")
+
+      setTimeout(() => {
+        shakeCanvas.classList.remove("shake-chunk")
+      }, 1500);
+    }
   // primer nivel de dificultad
     if (this.points == 500 && this.levels == 0){
       clearInterval(this.intervalId);
-      this.difficulty = this.difficulty - 1000;    
+      this.difficulty = this.difficulty - 500;    
       this.initFigure = true;
       this.levels+=1
 
-     var shakeCanvas = document.querySelector("canvas");
-     shakeCanvas.classList.add("shake-opacity")
-      
-
+      var shakeCanvas = document.querySelector("canvas");
+      shakeCanvas.classList.add("shake")
+  
   // segundo nivel de dificultad
     } if (this.points == 1000 && this.levels == 1){
 
       clearInterval(this.intervalId);
-      this.difficulty = this.difficulty - 500;   
+      this.difficulty = this.difficulty - 200;   
      
       this.initFigure = true;
       this.levels+=1
 
-      
       var shakeCanvas = document.querySelector("canvas");
-      shakeCanvas.classList.add("shake-little")
-
+      shakeCanvas.classList.add("shake-opacity")
 
   // tercer nivel de dificultad
     } if (this.points == 1500 && this.levels == 2){
@@ -77,8 +109,9 @@ class Game {
     audioLastLevel.volume = 0.1
     audioLastLevel.play() 
   
+    } 
   }
-}
+ 
 
   clearCanvas() {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -87,16 +120,25 @@ class Game {
   // dibujamos cuadrados
   drawCanvas() {
     
-    this.figures.forEach((enemy) => {
+    this.figures.forEach((enemy, index) => {
+      if(enemy.deleteItem){
+       
+
+        this.figures.splice(index, 1);
+
+
+      }
      enemy.drawImg()
+
     });
   }
 
   // checkeo de clicks del juagador + registro de puntos/fallos
   playerClick(userX, userY) {
     var pairClick = 0;
+
     this.figures.forEach((enemy, index) => {
-      if (enemy.checkPairClick(userX, userY)) {
+      if (enemy.checkPairClick(userX, userY) && !enemy.enemyFigure) {
         var audioPairClick = new Audio("audios/pairClick.mp3");
         audioPairClick.volume = 0.2
         audioPairClick.play();
@@ -106,18 +148,34 @@ class Game {
         this.figures.splice(index, 1);
         pairClick = true;
 
+      }else if(enemy.checkPairClick(userX, userY) && enemy.enemyFigure){
+        
+        var audioFailSquare = new Audio('audios/errorCuadrado.mp3');
+        audioFailSquare.play()
+        audioFailSquare.volume = 0.2
+
+        var shakeCanvas = document.querySelector("canvas");
+        shakeCanvas.classList.add("shake-crazy")
+        setTimeout(() => {
+          shakeCanvas.classList.remove("shake-crazy")
+        }, 1000);
+
+        this.points = this.points - 50
+        this.failClick++;
+        pairClick = true
       }
     });
-
-    if (!pairClick) {
-      var audioFailClick = new Audio('../audios/failClick.mp3');
-      audioFailClick.volume = 0.2
-      audioFailClick.play()
-      this.failClick++;
-    }
-    this.checkFailclicks();
-    this.updateStats();
-    
+  
+      if (!pairClick) {
+        
+        var audioFailClick = new Audio('../audios/failClick.mp3');
+        audioFailClick.volume = 0.2
+        audioFailClick.play()
+        this.failClick++;
+      }
+      this.checkFailclicks();
+      this.updateStats();
+      
   }
 
   // checkeo para lose por maximo de fail clicks
@@ -130,7 +188,7 @@ class Game {
 
   //callback gameover
   gameOver() {
-    var audioLose = new Audio('audios/game over.mp3');
+    var audioLose = new Audio('audios/gameover.mp3');
     audioLose.play()
     audioLose.volume = 0.2
     this.gameOverCallback();
@@ -157,7 +215,6 @@ class Game {
       var audioWin = new Audio("audios/winScreen.mp3");
       audioWin.volume = 0.2
       audioWin.play();
-      console.log(" win win win win")
       this.gameWin();
     }
   }
