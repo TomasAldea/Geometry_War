@@ -15,7 +15,7 @@ class Game {
     this.levels = 0;
     this.winPoints = 2500; // puntos para ganar
     this.backGoundMusic = new Audio("audios/backgroundGame.mp3");
-    this.backGoundMusic.volume = 0.08;
+    this.backGoundMusic.volume = 0.05;
     this.backGoundMusic.play();
     //limites de errores
     this.limitFigures = 15;
@@ -46,10 +46,8 @@ class Game {
   // resetar el set interval y modifical el tiempo
   restartInterval() {
     // shakes dispersos
-
+    var shakeCanvas = document.querySelector("canvas");
     if (this.points == 200) {
-      this.sounds++;
-      var shakeCanvas = document.querySelector("canvas");
       shakeCanvas.classList.add("shake");
 
       setTimeout(() => {
@@ -57,7 +55,6 @@ class Game {
       }, 1500);
     }
     if (this.points == 400) {
-      var shakeCanvas = document.querySelector("canvas");
       shakeCanvas.classList.add("shake-chunk");
 
       setTimeout(() => {
@@ -65,15 +62,20 @@ class Game {
       }, 1500);
     }
     if (this.points == 600) {
-      var shakeCanvas = document.querySelector("canvas");
       shakeCanvas.classList.add("shake-chunk");
 
       setTimeout(() => {
         shakeCanvas.classList.remove("shake-chunk");
       }, 1500);
     }
-    if (this.points == 700) {
-      var shakeCanvas = document.querySelector("canvas");
+    if (this.points == 1500) {
+      shakeCanvas.classList.add("shake-chunk");
+
+      setTimeout(() => {
+        shakeCanvas.classList.remove("shake-chunk");
+      }, 1500);
+    }
+    if (this.points == 2000) {
       shakeCanvas.classList.add("shake-chunk");
 
       setTimeout(() => {
@@ -87,7 +89,6 @@ class Game {
       this.initFigure = true;
       this.levels += 1;
 
-      var shakeCanvas = document.querySelector("canvas");
       shakeCanvas.classList.add("shake");
 
       // segundo nivel de dificultad
@@ -99,20 +100,34 @@ class Game {
       this.initFigure = true;
       this.levels += 1;
 
-      var shakeCanvas = document.querySelector("canvas");
       shakeCanvas.classList.add("shake-opacity");
 
       // tercer nivel de dificultad
     }
-    if (this.points == 1500 && this.levels == 2) {
+    if (this.points == 1200 && this.levels == 2) {
       clearInterval(this.intervalId);
-      this.difficulty = this.difficulty - 500;
+      this.difficulty = this.difficulty - 250;
+
       this.initFigure = true;
       this.levels += 1;
+
+      shakeCanvas.classList.add("shake");
+
+      // cuarto nivel de dificultad
+    }
+    if (this.points == 1500 && this.levels == 3) {
+      clearInterval(this.intervalId);
+      this.difficulty = this.difficulty - 250;
+      this.initFigure = true;
+      this.levels += 1;
+
+      shakeCanvas.classList.add("shake-opacity");
       // audio
-      var audioLastLevel = new Audio("audios/lastLevelSound.mp3");
+      /*
+      var audioLastLevel = new Audio("audios/cinema_4d_seconds_countdown_timer_3_2_1_0_-2003946212818753087.mp3");
       audioLastLevel.volume = 0.1;
       audioLastLevel.play();
+      */
     }
   }
 
@@ -165,8 +180,7 @@ class Game {
       var audioFailClick = new Audio("audios/failClick.mp3");
       audioFailClick.volume = 0.2;
       audioFailClick.play();
-      
-      
+
       this.failClick++;
     }
     this.checkFailclicks();

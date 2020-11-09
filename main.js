@@ -1,13 +1,10 @@
 "use-strict";
 
 const main = () => {
-  
-
   const buildDom = (html) => {
     const main = document.querySelector("main");
     main.innerHTML = html;
   };
-
 
   const buildSplashScreen = () => {
     buildDom(`
@@ -34,72 +31,60 @@ const main = () => {
         </section>
         `);
 
-
-      /*
+    /*
       BLOQUEADO POR POLITICA DE CRHOME
       var audioStart = new Audio('audios/street-fighter-winMusic.mp3');
       audioStart.play()
       */
 
-
     const startButton = document.querySelector("button");
 
     startButton.addEventListener("click", buildGameScreen);
-
- 
-    
-
   };
 
-// pantalla para win
+  // pantalla para win
 
-const buildGameWin = () => {
-  buildDom(`
+  const buildGameWin = () => {
+    buildDom(`
           <section class="game-win">
               <h1>¡You win!</h1>
               <button>Restart</button>
           </section>
       `);
 
+    var audioWin = new Audio("audios/street-fighter-winMusic.mp3");
+    audioWin.play();
+    audioWin.volume = 0.2;
+    const pauseAudio = () => {
+      audioWin.muted = true;
+    };
 
-  var audioWin = new Audio('audios/street-fighter-winMusic.mp3');
-  audioWin.play()
-  audioWin.volume = 0.2
-  const pauseAudio = () => {
-    audioWin.muted = true
-  }
-
-  const restartButton = document.querySelector("button");
-  restartButton.addEventListener("click", pauseAudio);
-  restartButton.addEventListener("click", buildGameScreen);
-
-};
-
+    const restartButton = document.querySelector("button");
+    restartButton.addEventListener("click", pauseAudio);
+    restartButton.addEventListener("click", buildGameScreen);
+  };
 
   // pantalla para lose
   const buildGameOver = () => {
-  
     buildDom(`
             <section class="game-over fade-in">
-                <h1>Game Over Screen</h1>
+                <h1>Game Over</h1>
                 <button>Restart</button>
             </section>
         `);
-     
-    // confetti.start();
+
+    //confetti.start(10000);
+
     const restartButton = document.querySelector("button");
 
-    
     restartButton.addEventListener("click", buildGameScreen);
-    
-      
   };
 
-// primera pantalla
+  // primera pantalla
 
   const buildGameScreen = () => {
     const main = document.querySelector("main");
-    main.classList.add("fade-in")
+    main.classList.add("fade-in");
     buildDom(`
             <section class="game-screen">
               <table class="game-table">
@@ -114,8 +99,6 @@ const buildGameWin = () => {
             
         `);
 
-     
-
     const canvas = document.querySelector("canvas");
     const ctx = canvas.getContext("2d");
 
@@ -129,25 +112,16 @@ const buildGameWin = () => {
       game.playerClick(x, y);
     }
 
-
-
     canvas.addEventListener("mousedown", function (e) {
-
       getMousePosition(canvas, e);
     });
 
-    setTimeout(function(){ game.startLoop(); }, 3000);
-
-
-
+    setTimeout(function () {
+      game.startLoop();
+    }, 3000);
   };
 
   buildSplashScreen();
-
- 
-
 };
 
-window.addEventListener("load", main) 
-
-
+window.addEventListener("load", main);
