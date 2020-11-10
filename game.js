@@ -117,7 +117,7 @@ class Game {
     }
     if (this.points == 1500 && this.levels == 3) {
       clearInterval(this.intervalId);
-      this.difficulty = this.difficulty - 250;
+      this.difficulty = this.difficulty - 200;
       this.initFigure = true;
       this.levels += 1;
 
