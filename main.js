@@ -14,7 +14,7 @@ const main = () => {
             <h2 class="animate__animated animate__zoomInUp animate__delay-1s"> 
             <u>Objective</u> <br> Make the figures disappear with your mouse.<br>
             <u>Win condition</u> <br>  Make 2500 points clearing figures.<br>
-            <u>Lose condition</u> <br> Missclick 15 times or accumulate 15 squares
+            <u>Lose condition</u> <br> Missclick 15 times or accumulate 15 figures
             </h2>
             <div class="animate__animated animate__zoomInRight animate__delay-1s">
             <img src="screens/circleBlue.png"  width="50" height="50"> 

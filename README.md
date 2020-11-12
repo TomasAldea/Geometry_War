@@ -3,15 +3,16 @@
 ## descripción
 
 Geometry War es un juego para mejorar los reflejos en el que el jugador deberá clickar encima de las figuras geométricas que aparezcan en el tablero.
-La dificultad ira incrementando según pase el tiempo y las figuras geométricas cada vez aparecerán mas rápido y en tamaños mas reducidos.
-El jugador perderá la partida si se acumulan mas de X figuras en el tablero a la vez.
+La dificultad ira incrementando según pase el tiempo y las figuras geométricas cada vez aparecerán mas rápido.
+El jugador perderá la partida si se acumulan mas de 15 figuras en el tablero a la vez o falla mas de 15 clicks.
 
 ## Estructura de datos
 
 index.html
 game.js
 player.js
-Figures.js
+enemy.js
+main.js
 
 ## 1. archivo index.html
 
@@ -24,14 +25,25 @@ Figures.js
 ## 3. Constructor de juegos
 
 ### Propiedades:
-  - figure
-  - lives
+  - figures
+  - difficulty
+  - failClicks
+  - points
+  - winPoints
+  - limitFigures
+  - LimitFailClicks
 
 ### Métodos:
   - startLoop
-  - checkClick
-  - removeFigure
-  - checkLose
+  - restartInterval
+  - clearCanvas
+  - drawCanvas
+  - playerClick
+  - checkFailclicks
+  - checkNumberFigures
+  - checkWinCondition
+  - updateStats
+  - createFigure
    
 
 ## 4. Jugador constructor
@@ -41,22 +53,21 @@ Figures.js
   
 
 ### Métodos:
-  - click
-  - removeFigure
+  - showCoords
+  
 
 
 ## 5. Constructor de figuras
 
 ### Propiedades:
-  - figuraCuadrada
-  - figuraTriangulo
-  - figura circulo
+  - size
+  - icons
+  - icons
 
 ### Métodos:
-  -  cadenciaCuadrados
-  -  cadenciaTriangulos
-  -  cadenciaCirculos
-  -  posicionAleatoria
+  -  drawImg
+  -  checkPairClick
+
 
 
 ## Tareas
@@ -77,7 +88,7 @@ Figures.js
 
 ## Reserva
 
-. Pausar juego
+. respoinsive
 . dar la opcion de elegir tipo de cursor
 
 ## Trello

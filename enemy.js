@@ -12,7 +12,7 @@ class Enemy {
     this.iconsFail = ["screens/failSquare (2).png", "screens/circleFail.png"];
     this.imageSelected = null;
     this.enemyFigure = false;
-    this.healClick = false; // vidas
+    this.healClick = false; // vidas por hacer
     this.deleteItem = false;
     setTimeout(() => {
       if (this.enemyFigure) {
