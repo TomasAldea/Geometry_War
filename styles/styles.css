@@ -15,6 +15,7 @@ html {
 body {
   margin: 0;
   padding: 0;
+  
 }
 
 /* ---- typography ---- */
@@ -24,6 +25,7 @@ body {
   font-family: Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 147%;
+  cursor: url("../screens/cursor.png"), default;
 }
 
 h1 {
@@ -142,8 +144,6 @@ th {
 canvas {
   backdrop-filter: blur(40px);
   background-color: rgba(255, 255, 255, 0.2);
-  /* cursor: pointer;  */
-  cursor: url("../screens/cursor.png"), default;
 }
 
 .first-text {
@@ -156,7 +156,7 @@ button {
   border-radius: 20px;
   border: 4px solid #c3c3c3;
   box-shadow: 5px 5px 20px 0px #00000059;
-  cursor: pointer;
+  cursor: url("../screens/objetivo.png"), default;
 }
 
 .game-table {
@@ -184,4 +184,9 @@ button:hover {
   100% {
     opacity: 1;
   }
+}
+
+
+.game-win {
+  z-index: 1;
 }

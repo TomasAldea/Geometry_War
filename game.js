@@ -15,7 +15,7 @@ class Game {
     this.levels = 0;
     this.winPoints = 2500; // puntos para ganar
     this.backGoundMusic = new Audio("audios/backgroundGame.mp3");
-    this.backGoundMusic.volume = 0.05;
+    this.backGoundMusic.volume = 0.02;
     this.backGoundMusic.play();
     //limites de errores
     this.limitFigures = 15;
@@ -239,10 +239,15 @@ class Game {
     }
     // clicksFallidos
     var limitFailClicksDOM = document.getElementById("limitFailClicks");
-    limitFailClicksDOM.innerText = this.failClick + "/" + this.limitFailClicks;
+    if (limitFailClicksDOM) {
+      limitFailClicksDOM.innerText =
+        this.failClick + "/" + this.limitFailClicks;
+    }
     // clicksAcertados
     var limitGuessedClicksDOM = document.getElementById("guessedClicks");
-    limitGuessedClicksDOM.innerText = this.points;
+    if (limitGuessedClicksDOM) {
+      limitGuessedClicksDOM.innerText = this.points;
+    }
   }
 
   createFigure() {

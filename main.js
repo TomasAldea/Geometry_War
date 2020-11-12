@@ -52,6 +52,8 @@ const main = () => {
           </section>
       `);
 
+    // confetti.start();
+
     var audioWin = new Audio("audios/street-fighter-winMusic.mp3");
     audioWin.play();
     audioWin.volume = 0.2;
@@ -73,8 +75,6 @@ const main = () => {
             </section>
         `);
 
-    //confetti.start(10000);
-
     const restartButton = document.querySelector("button");
 
     restartButton.addEventListener("click", buildGameScreen);
@@ -89,7 +89,7 @@ const main = () => {
             <section class="game-screen">
               <table class="game-table">
                 <tr>
-                  <th>MissClicks</th><th>Enemy figures</th><th>Total Points</th>
+                  <th>MissClicks</th><th>Total figures</th><th>Total Points</th>
                 </tr>
                 <tr>
                   <td id="limitFailClicks"></td><td id="limitFigures"></td><th id="guessedClicks">0</th>
