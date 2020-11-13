@@ -56,7 +56,7 @@ const main = () => {
 
     var audioWin = new Audio("audios/street-fighter-winMusic.mp3");
     audioWin.play();
-    audioWin.volume = 0.2;
+    audioWin.volume = 0.05;
     const pauseAudio = () => {
       audioWin.muted = true;
     };

@@ -15,7 +15,7 @@ class Game {
     this.levels = 0;
     this.winPoints = 2500; // puntos para ganar
     this.backGoundMusic = new Audio("audios/backgroundGame.mp3");
-    this.backGoundMusic.volume = 0.02;
+    this.backGoundMusic.volume = 0.01;
     this.backGoundMusic.play();
     //limites de errores
     this.limitFigures = 15;
@@ -152,7 +152,7 @@ class Game {
     this.figures.forEach((enemy, index) => {
       if (enemy.checkPairClick(userX, userY) && !enemy.enemyFigure) {
         var audioPairClick = new Audio("audios/pairClick.mp3");
-        audioPairClick.volume = 0.2;
+        audioPairClick.volume = 0.05;
         audioPairClick.play();
         this.points = this.points + 50;
         this.checkWinCondition();
@@ -200,7 +200,7 @@ class Game {
     this.backGoundMusic.muted = true;
     var audioLose = new Audio("audios/gameover.mp3");
     audioLose.play();
-    audioLose.volume = 0.2;
+    audioLose.volume = 0.05;
     this.gameOverCallback();
     clearInterval(this.intervalId);
   }
@@ -224,7 +224,7 @@ class Game {
   checkWinCondition() {
     if (this.points == this.winPoints) {
       var audioWin = new Audio("audios/winScreen.mp3");
-      audioWin.volume = 0.2;
+      audioWin.volume = 0.05;
       audioWin.play();
       this.gameWin();
     }
