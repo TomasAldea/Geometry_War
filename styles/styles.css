@@ -114,13 +114,10 @@ th {
   flex-direction: column-reverse;
 }
 .container .game-screen table {
-  background: blueviolet;
   text-align: center;
   width: 20%;
   font-family: "Orbitron";
   font-size: 20px;
-  backdrop-filter: blur(10px);
-  background-color: rgb(9 41 232 / 20%);
 }
 .container {
   background-image: url("../screens/first screen.jpg");
@@ -159,12 +156,6 @@ button {
   cursor: url("../screens/objetivo.png"), default;
 }
 
-.game-table {
-  background-color: #ffdf00;
-  border-radius: 20px;
-  border-spacing: 5px;
-}
-
 button:hover {
   background: #ffdf00;
 }
@@ -189,4 +180,12 @@ button:hover {
 
 .game-win {
   z-index: 1;
+}
+
+th {
+  color: #62c1c1;
+}
+
+td {
+  color: #62c1c1;
 }
